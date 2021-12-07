@@ -1,0 +1,95 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao React</title>
+  <style>
+    img {
+      width: 50px;
+      height: 50px;
+      
+      border-radius: 50%;
+    }
+    .retangulo {
+      height: 60px;
+      width: 302px;
+      border:0px solid;
+      border-radius: 2rem;
+      display:flex;
+      margin:3px;
+      background-color: rgb(204, 240, 247);
+
+    }
+    .imagem {
+      padding: 5px;
+
+    }
+    .textos {
+          flex-direction: column;
+          width: 280px;
+          padding-top: 4px;
+          padding-right: 10px;
+
+    }
+    .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+    }
+    .raiz {
+          border:1px solid;
+          border-radius: 1rem;
+          padding: 10px;
+
+    }
+    ul{
+      padding: 0px;
+      list-style-type: none;
+    }
+ </style>
+</head>
+<body>
+  <div id="container" class="container"><div id="raiz" class="raiz"></div></div>
+  <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script type="text/babel">
+      let element
+      const arrayLista = [{photo: 'homer.jpg',name:'Biocrenilson',description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. '},
+                          {photo: 'homer.jpg',name:'Praxedes',description:'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'},
+                          {photo: 'homer.jpg',name:'Kunegundes',description:'when an unknown printer took a galley of type and scrambled it to make a type '},
+                          {photo: 'homer.jpg',name:'Valcrécia',description:'but also the leap into electronic typesetting, remaining essentially unchanged'},
+                          {photo: 'homer.jpg',name:'Miosógenes',description:'It was popularised in the 1960s with the release of Letraset she'},
+                          {photo: 'homer.jpg',name:'Alexanderson',description:' passages, and more recently with desktop publishing software like Aldus  '}]
+      function MontaItem(props){
+        const arrayLista= props.dadosLista
+        let ind=0
+        
+        const listItems = arrayLista.map((item) =>
+          <li key={ind++}>
+            {<div className="retangulo">
+                    <div className='imagem'>
+                        <img src={item.photo}/>
+                    </div >
+                    <div className="textos">
+                        <div>
+                          <label><b><i>{item.name}</i></b></label>
+                        </div>
+                        <div>
+                          <label><small>{item.description}</small></label>
+                        </div>
+                    </div >
+                </div>} 
+          </li>
+        );
+        return <ul>{listItems} </ul>
+      }
+      element = <MontaItem dadosLista={arrayLista}/>;
+
+    const principal = document.getElementById('raiz');
+    console.log(element)
+    ReactDOM.render(element, principal)
+  </script>
+</body>
+</html>
