@@ -41,13 +41,18 @@
           border:1px solid;
           border-radius: 1rem;
           padding: 10px;
+          background-color: darkblue;
 
     }
     ul{
       padding: 0px;
       list-style-type: none;
     }
- </style>
+    .titulo{
+      display: flex;
+      color:white;
+      justify-content: center;
+    } </style>
 </head>
 <body>
   <div id="container" class="container"><div id="raiz" class="raiz"></div></div>
@@ -56,12 +61,12 @@
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   <script type="text/babel">
       let element
-      const arrayLista = [{photo: 'homer.jpg',name:'Biocrenilson',description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. '},
-                          {photo: 'homer.jpg',name:'Praxedes',description:'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'},
-                          {photo: 'homer.jpg',name:'Kunegundes',description:'when an unknown printer took a galley of type and scrambled it to make a type '},
-                          {photo: 'homer.jpg',name:'Valcrécia',description:'but also the leap into electronic typesetting, remaining essentially unchanged'},
+      const arrayLista = [{photo: 'homer.jpg',name:'Biocrenilson',description:'Lorem Ipsum is simply dummy text of the printing and typesetting . '},
+                          {photo: 'homer.jpg',name:'Praxedes',description:'Lorem Ipsum has been the industrys standard dummy text ever since the.'},
+                          {photo: 'homer.jpg',name:'Kunegundes',description:'when an unknown printer took a galley of type and scrambled it to make.'},
+                          {photo: 'homer.jpg',name:'Valcrécia',description:'but also the leap into electronic typesetting, remaining essentially .'},
                           {photo: 'homer.jpg',name:'Miosógenes',description:'It was popularised in the 1960s with the release of Letraset she'},
-                          {photo: 'homer.jpg',name:'Alexanderson',description:' passages, and more recently with desktop publishing software like Aldus  '}]
+                          {photo: 'homer.jpg',name:'Alexanderson',description:' passages, and more recently with desktop publishing software like .'}]
       function MontaItem(props){
         const arrayLista= props.dadosLista
         let ind=0
@@ -83,7 +88,7 @@
                 </div>} 
           </li>
         );
-        return <ul>{listItems} </ul>
+        return (<><div  className="titulo"><h1>LISTA EX5</h1></div><ul>{listItems} </ul></>)
       }
       element = <MontaItem dadosLista={arrayLista}/>;
 
