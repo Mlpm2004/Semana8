@@ -1,0 +1,100 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao React</title>
+  <style>
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    .retangulo {
+        height: 200px;
+        width: 150px;
+        border:0px solid;
+        border-radius: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;      margin:3px;
+        background-color: rgb(204, 240, 247);
+
+    }
+    .imagem {
+        padding: 5px;
+        display: flex;      
+        justify-content: center;
+    }
+    .textos {
+        padding-top: 4px;
+        padding-right: 10px;
+        display: flex;      
+        justify-content: center;
+
+    }
+    .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+    }
+    .raiz {
+          border:1px solid;
+          border-radius: 1rem;
+          padding: 10px;
+          background-color: darkblue;
+
+    }
+    .titulo{
+      display: flex;
+      color:white;
+      justify-content: center;
+    }
+    .produtos{
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+ </style>
+</head>
+<body>
+  <div id="container" class="container"><div id="raiz" class="raiz"></div></div>
+  <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script type="text/babel">
+      let element
+      const arrayLista = [{photo: 'homer.jpg',name:'Calça de couro cru ',price:'R$ 27,50'},
+                          {photo: 'homer.jpg',name:'Praxedes',price:'R$ 77,50'},
+                          {photo: 'homer.jpg',name:'Kunegundes',price:'R$ 25,70'},
+                          {photo: 'homer.jpg',name:'Valcrécia',price:'R$ 50,50'},
+                          {photo: 'homer.jpg',name:'Miosógenes',price:'R$ 88,50'},
+                          {photo: 'homer.jpg',name:'Tênis',price:'R$ 50,50'},
+                          {photo: 'homer.jpg',name:'Camiseta',price:'R$ 88,50'},
+                          {photo: 'homer.jpg',name:'Alexanderson',price:'R$ 100,00'}]
+    function Produtos(props){
+        const arrayLista= props.dadosLista
+        const listItems = arrayLista.map((item) =>
+                <div className="retangulo">     
+                    <div className='imagem'>
+                        <img src={item.photo}/>
+                    </div >
+                    <div className="textos">
+                        <label><b><i>{item.name}</i></b></label>
+                    </div>
+                    <div className="textos">
+                        <label><small>{item.price}</small></label>                        
+                    </div >
+                </div> 
+        );
+        return (<><div  className="titulo"><h1>Produtos Ex7</h1></div ><div className="produtos">{listItems} </div></>)
+      }
+      element = <Produtos dadosLista={arrayLista}/>;
+
+    const principal = document.getElementById('raiz');
+    console.log(element)
+    ReactDOM.render(element, principal)
+  </script>
+</body>
+</html>
