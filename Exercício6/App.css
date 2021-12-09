@@ -1,0 +1,45 @@
+
+        .retangulo {
+        height: 60px;
+        width: 302px;
+        border:0px solid;
+        border-radius: 2rem;
+        display:flex;
+        margin:3px;
+        
+
+        }
+        .imagem {
+        padding: 5px;
+
+        }
+        .textos {
+            flex-direction: column;
+            width: 280px;
+            padding-top: 4px;
+            padding-right: 10px;
+            margin:5px;
+
+        }
+        .container {
+            border:1px solid;
+            border-radius: 1rem;
+            width: 300px;
+ 
+        }
+        .raiz {
+           padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        ul{
+        padding: 0px;
+        list-style-type: none;
+        }
+        .titulo{
+        display: flex;
+        color:white;
+        justify-content: center;
+        } 
