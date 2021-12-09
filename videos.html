@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+<style>
+
+@keyframes fadeinvideos{
+    0% { opacity: 0; }
+    66% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeinvideos{
+    0% { opacity: 0; }
+    66% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+.pgvideoscontainer{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    height: 280px;
+
+}
+.pgvideosretangulomaior{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border-radius: 2rem;
+    border:0.5px outset
+
+}
+.video{
+
+    animation: 3s ease 0s normal forwards 1 fadeinvideos;
+}
+.pgvideosretangulomenor{
+    width: 32%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+
+}
+.pgvideosrolagem{
+    
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.pgvideosbtnseta{
+    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.pgvideosimg{
+     width: 35px;
+    height: 35px;   
+     cursor:pointer;
+}
+  iframe { width:360px;height:240px}
+</style>
+</head>
+<body>
+    
+
+    <div class="pgvideoscontainer " >
+        <div class="pgvideosretangulomaior" >
+            <div class="pgvideosrolagem" >
+                <img  alt="0" class="pgvideosimg " src='https://www.gov.br/agu/pt-br/composicao/cgu/cgu/imagens/seta-esquerda.png'/ onclick="moveEsquerda(this.alt)">
+            </div>
+            <div class="pgvideosretangulomenor" id="video11" ></div>
+            <div class="pgvideosretangulomenor" id="video12"></div>
+            <div class="pgvideosretangulomenor" id="video13"></div>
+            <div class="pgvideosrolagem" >
+                <img alt="0" class="pgvideosimg" src='https://www.gov.br/agu/pt-br/composicao/cgu/cgu/imagens/seta-direita.png'/ onclick="moveDireita(this.alt)">
+            </div>
+        </div>
+    </div>
+
+    <div class="pgvideoscontainer ">
+        <div class="pgvideosretangulomaior" >
+            <div class="pgvideosrolagem" >
+                <img  alt="1" class="pgvideosimg " src='https://www.gov.br/agu/pt-br/composicao/cgu/cgu/imagens/seta-esquerda.png'/ onclick="moveEsquerda(this.alt)">
+            </div>
+            <div class="pgvideosretangulomenor" id="video21" ></div>
+            <div class="pgvideosretangulomenor" id="video22"></div>
+            <div class="pgvideosretangulomenor" id="video23"></div>
+            <div class="pgvideosrolagem" >
+                <img alt="1" class="pgvideosimg" src='https://www.gov.br/agu/pt-br/composicao/cgu/cgu/imagens/seta-direita.png'/ onclick="moveDireita(this.alt)">
+            </div>
+        </div>
+    </div>
+    <div class="pgvideoscontainer ">
+        <div class="pgvideosretangulomaior" >
+            <div class="pgvideosrolagem" >
+                <img  alt="2" class="pgvideosimg " src='https://www.gov.br/agu/pt-br/composicao/cgu/cgu/imagens/seta-esquerda.png'/ onclick="moveEsquerda(this.alt)">
+            </div>
+            <div class="pgvideosretangulomenor" id="video31" ></div>
+            <div class="pgvideosretangulomenor" id="video32"></div>
+            
+            <div class="pgvideosrolagem" >
+                <img alt="2" class="pgvideosimg" src='https://www.gov.br/agu/pt-br/composicao/cgu/cgu/imagens/seta-direita.png'/ onclick="moveDireita(this.alt)">
+            </div>
+        </div>
+    </div>
+<script>
+let inicial=0  // variavel que acumula o indice onde está a ultima posição que foi deslocado no vetor de videos
+let indlinha=10 // variavel que indica qual html está sendo alterado
+//Array com os videos, deve ter um para cada html de exibição
+const vetor1 = [ 'https://www.youtube.com/embed/PwFmAurGA5U','https://www.youtube.com/embed/HMkIrYZK9JA',
+                'https://www.youtube.com/embed/7TqqSodgQ1o','https://www.youtube.com/embed/W_FYJRuCXb0',
+                'https://www.youtube.com/embed/vKXEBrpnDI8','https://www.youtube.com/embed/pTzG8XTBDW4'];
+const vetor2 = [ 'https://www.youtube.com/embed/7TqqSodgQ1o','https://www.youtube.com/embed/W_FYJRuCXb0',
+                'https://www.youtube.com/embed/vKXEBrpnDI8','https://www.youtube.com/embed/pTzG8XTBDW4'];
+const vetor3 = [ 'https://www.youtube.com/embed/7TqqSodgQ1o','https://www.youtube.com/embed/W_FYJRuCXb0'];//array com os arrays de video
+const linhas = [vetor1,vetor2,vetor3]
+//array com as ultimas posiçoes conhecidas do primeiro video de cada array de videos
+let indices =[0,0,0] 
+for (item of linhas){ // Monta a primeira tela com as posições zeradas
+    montalinhas(item)
+    indlinha+=10
+}
+//Compõe cada lilha contendo os vídeos 
+function montalinhas(item){
+    for (let i=1;i<=3;i++){
+        indice=indlinha+i
+        const video= document.getElementById('video'+indice);
+        video.innerHTML="<div class='video'><iframe src="+item[inicial]+" title='YouTube video player' </iframe></div>"
+        inicial++
+    }
+    inicial=0
+}
+//Faz a movimentação para a esquerda
+function moveEsquerda(ind){
+    inicial=indices[ind]
+    if (inicial>0){
+        indices[ind]--
+        inicial--
+        move(ind)
+    } 
+}
+//Faz a movimentação para a direita
+function moveDireita(ind){
+    inicial=indices[ind]
+    const limite=linhas[ind].length-3
+    if (inicial<limite){
+        inicial++
+        indices[ind]++ 
+        move(ind)
+    } 
+}
+function move(ind){
+    indlinha=ind*10+10
+    item=linhas[parseInt(ind)]
+    montalinhas(item)
+}
+ </script>
+</body>
+</html>
