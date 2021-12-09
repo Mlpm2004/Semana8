@@ -1,0 +1,110 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao React</title>
+  <style>
+    body{
+        background-image: linear-gradient( to right, rgb(34, 3, 105) , yellow);
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    .retangulo {
+        height: 200px;
+        width: 150px;
+        border:0px solid;
+        border-radius: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;      margin:3px;
+        background-color: rgb(204, 240, 247);
+
+    }
+    .imagem {
+        padding: 5px;
+        display: flex;      
+        justify-content: center;
+    }
+    .textos {
+        padding-top: 4px;
+        padding-right: 10px;
+        display: flex;      
+        justify-content: center;
+
+    }
+    .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          
+
+    }
+    .raiz {
+          border:1px solid;
+          border-radius: 1rem;
+          padding: 10px;
+          background-color: rgb(242, 247, 248);
+          width: 600px;
+
+
+    }
+    .titulo{
+      display: flex;
+      color:rgb(48, 45, 45);
+      justify-content: center;
+    }
+    .produtos{
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+ </style>
+</head>
+<body>
+    <div id="container" class="container"><div id="raiz" class="raiz"></div></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+    <script type="text/babel">
+        const data = [  {imagem: '001.png',id:'001',nome:'Bulbasaur'     ,tipos:'Grass, Poison'},
+                        {imagem: '002.png',id:'002',nome:'Ivysaur '      ,tipos:'Grass, Poison'},
+                        {imagem: '003.png',id:'003',nome:'Venusaur'      ,tipos:'Grass, Poison'},
+                        {imagem: '004.png',id:'004',nome:'Charmander '   ,tipos:'Grass, Poison'},
+                        {imagem: '005.png',id:'005',nome:'Charmeleon'    ,tipos:'Fire'},
+                        {imagem: '006.png',id:'006',nome:'Charizard'     ,tipos:'Fire, Flying'},
+                        {imagem: '007.png',id:'007',nome:'Squirtle'      ,tipos:'Water'},
+                        {imagem: '008.png',id:'008',nome:'Wartortle'     ,tipos:'Water'},
+                        {imagem: '009.png',id:'009',nome:'Blastoise'     ,tipos:'Water'},
+                        {imagem: '010.png',id:'010',nome:'Caterpie'      ,tipos:'Bug'}        ]
+
+        function App(props){
+        const arrayLista= props.dt
+        const listItems = arrayLista.map((item) =>
+                <div className="retangulo">     
+                    <div className='imagem'>
+                        <img src={item.imagem}/>
+                    </div >
+                    <div className="textos">
+                        <label><small>{item.id}</small></label>
+                    </div>
+                    <div className="textos">
+                        <label><b>{item.nome}</b></label>                        
+                    </div >
+                    <div className="textos">
+                        <label><small>{item.tipos}</small></label>                        
+                    </div >
+                </div> 
+        );
+        return (<><div  className="titulo"><h1>POKEDEX</h1></div ><div className="produtos">{listItems} </div></>)
+      }
+        const element =     <App dt={data}/>
+        const principal = document.getElementById('raiz');
+        console.log(element)
+        ReactDOM.render(element, principal)
+  </script>
+</body>
+</html>
